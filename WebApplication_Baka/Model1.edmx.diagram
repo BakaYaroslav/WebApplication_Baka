@@ -5,11 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a10fbcab364b461cb856677f4846bf74" Name="Diagram1" >
-        <EntityTypeShape EntityType="Model1.tootaja" Width="1.875" PointX="9.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.ametiTootaja" Width="1.5" PointX="6.375" PointY="3.5" />
-        <EntityTypeShape EntityType="Model1.amet" Width="1.875" PointX="9.25" PointY="4.375" />
+        <EntityTypeShape EntityType="Model1.tootaja" Width="1.875" PointX="10.875" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.ametiTootaja" Width="1.5" PointX="8.75" PointY="5.125" />
+        <EntityTypeShape EntityType="Model1.amet" Width="1.875" PointX="10.875" PointY="5.875" />
         <AssociationConnector Association="Model1.tootajaametiTootaja" />
         <AssociationConnector Association="Model1.ametametiTootaja" />
+        <EntityTypeShape EntityType="Model1.teenus" Width="1.5" PointX="1.875" PointY="3.125" />
+        <EntityTypeShape EntityType="Model1.tehnik" Width="1.5" PointX="4.125" PointY="0.875" />
+        <EntityTypeShape EntityType="Model1.tehnikuteenus" Width="1.5" PointX="4.125" PointY="3.5" />
+        <AssociationConnector Association="Model1.teenustehnikuteenus" />
+        <AssociationConnector Association="Model1.tehniktehnikuteenus" />
+        <EntityTypeShape EntityType="Model1.kleint" Width="1.5" PointX="1.875" PointY="5.625" />
+        <EntityTypeShape EntityType="Model1.seade" Width="1.5" PointX="5.875" PointY="5.5" />
+        <EntityTypeShape EntityType="Model1.klientiSeade" Width="1.5" PointX="3.875" PointY="5.625" />
+        <AssociationConnector Association="Model1.seadeklientiSeade" />
+        <AssociationConnector Association="Model1.kleintklientiSeade" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

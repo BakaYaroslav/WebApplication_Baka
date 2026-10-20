@@ -80,6 +80,28 @@
             <End Role="amet" EntitySet="ametSet" />
             <End Role="ametiTootaja" EntitySet="ametiTootajaSet" />
           </AssociationSet>
+          <EntitySet Name="teenusSet" EntityType="Model1.teenus" />
+          <EntitySet Name="tehnikSet" EntityType="Model1.tehnik" />
+          <EntitySet Name="tehnikuteenusSet" EntityType="Model1.tehnikuteenus" />
+          <AssociationSet Name="teenustehnikuteenus" Association="Model1.teenustehnikuteenus">
+            <End Role="teenus" EntitySet="teenusSet" />
+            <End Role="tehnikuteenus" EntitySet="tehnikuteenusSet" />
+          </AssociationSet>
+          <AssociationSet Name="tehniktehnikuteenus" Association="Model1.tehniktehnikuteenus">
+            <End Role="tehnik" EntitySet="tehnikSet" />
+            <End Role="tehnikuteenus" EntitySet="tehnikuteenusSet" />
+          </AssociationSet>
+          <EntitySet Name="kleintSet" EntityType="Model1.kleint" />
+          <EntitySet Name="seadeSet" EntityType="Model1.seade" />
+          <EntitySet Name="klientiSeadeSet" EntityType="Model1.klientiSeade" />
+          <AssociationSet Name="seadeklientiSeade" Association="Model1.seadeklientiSeade">
+            <End Role="seade" EntitySet="seadeSet" />
+            <End Role="klientiSeade" EntitySet="klientiSeadeSet" />
+          </AssociationSet>
+          <AssociationSet Name="kleintklientiSeade" Association="Model1.kleintklientiSeade">
+            <End Role="kleint" EntitySet="kleintSet" />
+            <End Role="klientiSeade" EntitySet="klientiSeadeSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tootaja">
           <Key>
@@ -112,6 +134,79 @@
         <Association Name="ametametiTootaja">
           <End Type="Model1.amet" Role="amet" Multiplicity="1" />
           <End Type="Model1.ametiTootaja" Role="ametiTootaja" Multiplicity="*" />
+        </Association>
+        <EntityType Name="teenus">
+          <Key>
+            <PropertyRef Name="teenuseID" />
+          </Key>
+          <Property Name="teenuseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nimetus" Type="String" Nullable="false" />
+          <Property Name="kirjeldus" Type="String" Nullable="false" />
+          <Property Name="hind" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tehnikuteenus" Relationship="Model1.teenustehnikuteenus" FromRole="teenus" ToRole="tehnikuteenus" />
+        </EntityType>
+        <EntityType Name="tehnik">
+          <Key>
+            <PropertyRef Name="tehnikID" />
+          </Key>
+          <Property Name="tehnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nimi" Type="String" Nullable="false" />
+          <Property Name="kontaktadmed" Type="String" Nullable="false" />
+          <Property Name="amet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tehnikuteenus" Relationship="Model1.tehniktehnikuteenus" FromRole="tehnik" ToRole="tehnikuteenus" />
+        </EntityType>
+        <EntityType Name="tehnikuteenus">
+          <Key>
+            <PropertyRef Name="tehnikuteenusID" />
+          </Key>
+          <Property Name="tehnikuteenusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="teenus" Relationship="Model1.teenustehnikuteenus" FromRole="tehnikuteenus" ToRole="teenus" />
+          <NavigationProperty Name="tehnik" Relationship="Model1.tehniktehnikuteenus" FromRole="tehnikuteenus" ToRole="tehnik" />
+        </EntityType>
+        <Association Name="teenustehnikuteenus">
+          <End Type="Model1.teenus" Role="teenus" Multiplicity="1" />
+          <End Type="Model1.tehnikuteenus" Role="tehnikuteenus" Multiplicity="*" />
+        </Association>
+        <Association Name="tehniktehnikuteenus">
+          <End Type="Model1.tehnik" Role="tehnik" Multiplicity="1" />
+          <End Type="Model1.tehnikuteenus" Role="tehnikuteenus" Multiplicity="*" />
+        </Association>
+        <EntityType Name="kleint">
+          <Key>
+            <PropertyRef Name="klientID" />
+          </Key>
+          <Property Name="klientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nimi" Type="String" Nullable="false" />
+          <Property Name="tel" Type="String" Nullable="false" />
+          <Property Name="epost" Type="Int32" Nullable="false" />
+          <Property Name="aadress" Type="String" Nullable="false" />
+          <NavigationProperty Name="klientiSeade" Relationship="Model1.kleintklientiSeade" FromRole="kleint" ToRole="klientiSeade" />
+        </EntityType>
+        <EntityType Name="seade">
+          <Key>
+            <PropertyRef Name="seadeID" />
+          </Key>
+          <Property Name="seadeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tyyp" Type="String" Nullable="false" />
+          <Property Name="mudel" Type="String" Nullable="false" />
+          <Property Name="seerianumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="klientiSeade" Relationship="Model1.seadeklientiSeade" FromRole="seade" ToRole="klientiSeade" />
+        </EntityType>
+        <EntityType Name="klientiSeade">
+          <Key>
+            <PropertyRef Name="klientiSeadeID" />
+          </Key>
+          <Property Name="klientiSeadeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="seade" Relationship="Model1.seadeklientiSeade" FromRole="klientiSeade" ToRole="seade" />
+          <NavigationProperty Name="kleint" Relationship="Model1.kleintklientiSeade" FromRole="klientiSeade" ToRole="kleint" />
+        </EntityType>
+        <Association Name="seadeklientiSeade">
+          <End Type="Model1.seade" Role="seade" Multiplicity="1" />
+          <End Type="Model1.klientiSeade" Role="klientiSeade" Multiplicity="*" />
+        </Association>
+        <Association Name="kleintklientiSeade">
+          <End Type="Model1.kleint" Role="kleint" Multiplicity="1" />
+          <End Type="Model1.klientiSeade" Role="klientiSeade" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>

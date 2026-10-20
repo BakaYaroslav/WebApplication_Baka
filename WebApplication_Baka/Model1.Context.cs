@@ -28,5 +28,11 @@ namespace WebApplication_Baka
         public DbSet<tootaja> tootajaSet { get; set; }
         public DbSet<ametiTootaja> ametiTootajaSet { get; set; }
         public DbSet<amet> ametSet { get; set; }
+        public DbSet<teenus> teenusSet { get; set; }
+        public DbSet<tehnik> tehnikSet { get; set; }
+        public DbSet<tehnikuteenus> tehnikuteenusSet { get; set; }
+        public DbSet<kleint> kleintSet { get; set; }
+        public DbSet<seade> seadeSet { get; set; }
+        public DbSet<klientiSeade> klientiSeadeSet { get; set; }
     }
 }
