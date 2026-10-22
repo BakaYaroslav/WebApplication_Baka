@@ -32,7 +32,7 @@
                     </InsertItemTemplate>
                 </asp:TemplateField>
 
-                <asp:CommandField ShowInsertButton="True" ShowCancelButton="True" />
+                <asp:CommandField ShowInsertButton="True" InsertText="Lisa" ShowCancelButton="True" CancelText="Tühista" />
             </Fields>
             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
             <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />

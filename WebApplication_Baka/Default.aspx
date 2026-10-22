@@ -6,7 +6,7 @@
     <dl>
         <dd>
             <blockquote>
-                Tere tulemast, see leht on ühendatud andmebaasidega!</blockquote>
+                Tere tulemast, see leht on ühendatud andmebaasidega arvutiremont!</blockquote>
         </dd>
         <dt></dt>
     </dl>

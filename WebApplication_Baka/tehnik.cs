@@ -17,6 +17,7 @@ namespace WebApplication_Baka
         public tehnik()
         {
             this.tehnikuteenus = new HashSet<tehnikuteenus>();
+            this.remonditeenus = new HashSet<remonditeenus>();
         }
     
         public int tehnikID { get; set; }
@@ -25,5 +26,6 @@ namespace WebApplication_Baka
         public int amet { get; set; }
     
         public virtual ICollection<tehnikuteenus> tehnikuteenus { get; set; }
+        public virtual ICollection<remonditeenus> remonditeenus { get; set; }
     }
 }

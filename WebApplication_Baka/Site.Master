@@ -44,13 +44,14 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+               <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Avaleht</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Töötajad</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Ametit</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact2">Ametitöötajad</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact3">Lisa Ametitöötajad</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact4">Teenused</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact5">Tehnikud</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact7">Tehniku teenus tabel</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact6">Lisa Tehniku teenus</a></li>
+                       
                     </ul>
                 </div>
             </div>

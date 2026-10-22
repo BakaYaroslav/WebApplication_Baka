@@ -34,5 +34,11 @@ namespace WebApplication_Baka
         public DbSet<kleint> kleintSet { get; set; }
         public DbSet<seade> seadeSet { get; set; }
         public DbSet<klientiSeade> klientiSeadeSet { get; set; }
+        public DbSet<remonditoo> remonditooSet { get; set; }
+        public DbSet<remonditeenus> remonditeenusSet { get; set; }
+        public DbSet<varuosa> varuosaSet { get; set; }
+        public DbSet<varuosatool> varuosatoolSet { get; set; }
+        public DbSet<tootja> tootjaSet { get; set; }
+        public DbSet<tagasiside> tagasisideSet { get; set; }
     }
 }

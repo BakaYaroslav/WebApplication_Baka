@@ -4,10 +4,10 @@
     <main aria-labelledby="title">
         <h1 id="title">Tabel amet</h1>
 <p>
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ametID" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display." CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ametID" DataSourceID="SqlDataSource1" EmptyDataText="Andmed puuduvad." CellPadding="4" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+            <asp:CommandField ShowDeleteButton="True" DeleteText="Kustuta" ShowEditButton="True" EditText="Muuda" UpdateText="Salvesta" CancelText="Tühista" />
             <asp:BoundField DataField="ametID" HeaderText="ametID" ReadOnly="True" SortExpression="ametID" />
             <asp:BoundField DataField="ametNimetus" HeaderText="ametNimetus" SortExpression="ametNimetus" />
         </Columns>
@@ -37,7 +37,7 @@
 </p>
 <h2>Lisa amet</h2>
 <p>
-    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="ametID" DataSourceID="SqlDataSource1" Height="50px" Width="125px" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="ametID" DataSourceID="SqlDataSource1" DefaultMode="Insert" Height="50px" Width="250px" CellPadding="4" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" />
         <CommandRowStyle BackColor="#D1DDF1" Font-Bold="True" />
         <EditRowStyle BackColor="#2461BF" />
@@ -45,7 +45,7 @@
         <Fields>
             <asp:BoundField DataField="ametID" HeaderText="ametID" InsertVisible="False" ReadOnly="True" SortExpression="ametID" />
             <asp:BoundField DataField="ametNimetus" HeaderText="ametNimetus" SortExpression="ametNimetus" />
-            <asp:CommandField ShowInsertButton="True" />
+            <asp:CommandField ShowInsertButton="True" InsertText="Lisa" ShowCancelButton="False" />
         </Fields>
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

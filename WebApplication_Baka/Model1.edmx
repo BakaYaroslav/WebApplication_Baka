@@ -9,6 +9,18 @@
     <EntitySet Name="tootajaSet" EntityType="Model1.Store.tootajaSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ametiTootajaSet" EntityType="Model1.Store.ametiTootajaSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ametSet" EntityType="Model1.Store.ametSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="teenusSet" EntityType="Model1.Store.teenusSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tehnikSet" EntityType="Model1.Store.tehnikSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tehnikuteenusSet" EntityType="Model1.Store.tehnikuteenusSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="kleintSet" EntityType="Model1.Store.kleintSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="seadeSet" EntityType="Model1.Store.seadeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="klientiSeadeSet" EntityType="Model1.Store.klientiSeadeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="remonditooSet" EntityType="Model1.Store.remonditooSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="remonditeenusSet" EntityType="Model1.Store.remonditeenusSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="varuosaSet" EntityType="Model1.Store.varuosaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="varuosatoolSet" EntityType="Model1.Store.varuosatoolSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tootjaSet" EntityType="Model1.Store.tootjaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tagasisideSet" EntityType="Model1.Store.tagasisideSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="tootajaametiTootaja" Association="Model1.Store.tootajaametiTootaja">
       <End Role="tootaja" EntitySet="tootajaSet" />
       <End Role="ametiTootaja" EntitySet="ametiTootajaSet" />
@@ -16,6 +28,58 @@
     <AssociationSet Name="ametametiTootaja" Association="Model1.Store.ametametiTootaja">
       <End Role="amet" EntitySet="ametSet" />
       <End Role="ametiTootaja" EntitySet="ametiTootajaSet" />
+    </AssociationSet>
+    <AssociationSet Name="teenustehnikuteenus" Association="Model1.Store.teenustehnikuteenus">
+      <End Role="teenus" EntitySet="teenusSet" />
+      <End Role="tehnikuteenus" EntitySet="tehnikuteenusSet" />
+    </AssociationSet>
+    <AssociationSet Name="tehniktehnikuteenus" Association="Model1.Store.tehniktehnikuteenus">
+      <End Role="tehnik" EntitySet="tehnikSet" />
+      <End Role="tehnikuteenus" EntitySet="tehnikuteenusSet" />
+    </AssociationSet>
+    <AssociationSet Name="seadeklientiSeade" Association="Model1.Store.seadeklientiSeade">
+      <End Role="seade" EntitySet="seadeSet" />
+      <End Role="klientiSeade" EntitySet="klientiSeadeSet" />
+    </AssociationSet>
+    <AssociationSet Name="kleintklientiSeade" Association="Model1.Store.kleintklientiSeade">
+      <End Role="kleint" EntitySet="kleintSet" />
+      <End Role="klientiSeade" EntitySet="klientiSeadeSet" />
+    </AssociationSet>
+    <AssociationSet Name="seaderemonditoo" Association="Model1.Store.seaderemonditoo">
+      <End Role="seade" EntitySet="seadeSet" />
+      <End Role="remonditoo" EntitySet="remonditooSet" />
+    </AssociationSet>
+    <AssociationSet Name="remonditooremonditeenus" Association="Model1.Store.remonditooremonditeenus">
+      <End Role="remonditoo" EntitySet="remonditooSet" />
+      <End Role="remonditeenus" EntitySet="remonditeenusSet" />
+    </AssociationSet>
+    <AssociationSet Name="tehnikremonditeenus" Association="Model1.Store.tehnikremonditeenus">
+      <End Role="tehnik" EntitySet="tehnikSet" />
+      <End Role="remonditeenus" EntitySet="remonditeenusSet" />
+    </AssociationSet>
+    <AssociationSet Name="teenusremonditeenus" Association="Model1.Store.teenusremonditeenus">
+      <End Role="teenus" EntitySet="teenusSet" />
+      <End Role="remonditeenus" EntitySet="remonditeenusSet" />
+    </AssociationSet>
+    <AssociationSet Name="tootjaseade" Association="Model1.Store.tootjaseade">
+      <End Role="tootja" EntitySet="tootjaSet" />
+      <End Role="seade" EntitySet="seadeSet" />
+    </AssociationSet>
+    <AssociationSet Name="tootjavaruosa" Association="Model1.Store.tootjavaruosa">
+      <End Role="tootja" EntitySet="tootjaSet" />
+      <End Role="varuosa" EntitySet="varuosaSet" />
+    </AssociationSet>
+    <AssociationSet Name="remonditoovaruosatool" Association="Model1.Store.remonditoovaruosatool">
+      <End Role="remonditoo" EntitySet="remonditooSet" />
+      <End Role="varuosatool" EntitySet="varuosatoolSet" />
+    </AssociationSet>
+    <AssociationSet Name="varuosavaruosatool" Association="Model1.Store.varuosavaruosatool">
+      <End Role="varuosa" EntitySet="varuosaSet" />
+      <End Role="varuosatool" EntitySet="varuosatoolSet" />
+    </AssociationSet>
+    <AssociationSet Name="remonditootagasiside" Association="Model1.Store.remonditootagasiside">
+      <End Role="remonditoo" EntitySet="remonditooSet" />
+      <End Role="tagasiside" EntitySet="tagasisideSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="tootajaSet">
@@ -40,6 +104,118 @@
     <Property Name="ametID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ametNimetus" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="teenusSet">
+    <Key>
+      <PropertyRef Name="teenuseID" />
+    </Key>
+    <Property Name="teenuseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nimetus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="kirjeldus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="hind" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tehnikSet">
+    <Key>
+      <PropertyRef Name="tehnikID" />
+    </Key>
+    <Property Name="tehnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nimi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="kontaktadmed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="amet" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tehnikuteenusSet">
+    <Key>
+      <PropertyRef Name="tehnikuteenusID" />
+    </Key>
+    <Property Name="tehnikuteenusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="teenus_teenuseID" Type="int" Nullable="false" />
+    <Property Name="tehnik_tehnikID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kleintSet">
+    <Key>
+      <PropertyRef Name="klientID" />
+    </Key>
+    <Property Name="klientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nimi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="epost" Type="int" Nullable="false" />
+    <Property Name="aadress" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="seadeSet">
+    <Key>
+      <PropertyRef Name="seadeID" />
+    </Key>
+    <Property Name="seadeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tyyp" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="mudel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="seerianumber" Type="int" Nullable="false" />
+    <Property Name="tootja_tootjaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="klientiSeadeSet">
+    <Key>
+      <PropertyRef Name="klientiSeadeID" />
+    </Key>
+    <Property Name="klientiSeadeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="seade_seadeID" Type="int" Nullable="false" />
+    <Property Name="kleint_klientID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="remonditooSet">
+    <Key>
+      <PropertyRef Name="remonditooID" />
+    </Key>
+    <Property Name="remonditooID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vastuvõtmise_kuupaev" Type="datetime" Nullable="false" />
+    <Property Name="kirjeldus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="remondistatus" Type="int" Nullable="false" />
+    <Property Name="ülesandmise_kuupaev" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="seade_seadeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="remonditeenusSet">
+    <Key>
+      <PropertyRef Name="remonditeenusID" />
+    </Key>
+    <Property Name="remonditeenusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="remonditoo_remonditooID" Type="int" Nullable="false" />
+    <Property Name="tehnik_tehnikID" Type="int" Nullable="false" />
+    <Property Name="teenus_teenuseID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="varuosaSet">
+    <Key>
+      <PropertyRef Name="varuosaID" />
+    </Key>
+    <Property Name="varuosaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nimetus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="hind" Type="int" Nullable="false" />
+    <Property Name="laoseis" Type="int" Nullable="false" />
+    <Property Name="aadress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tootja_tootjaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="varuosatoolSet">
+    <Key>
+      <PropertyRef Name="varuosatoolID" />
+    </Key>
+    <Property Name="varuosatoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kogus" Type="int" Nullable="false" />
+    <Property Name="remonditoo_remonditooID" Type="int" Nullable="false" />
+    <Property Name="varuosa_varuosaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tootjaSet">
+    <Key>
+      <PropertyRef Name="tootjaID" />
+    </Key>
+    <Property Name="tootjaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nimi" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tagasisideSet">
+    <Key>
+      <PropertyRef Name="tagasisideID" />
+    </Key>
+    <Property Name="tagasisideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hinnaaeg" Type="time" Nullable="false" />
+    <Property Name="kommentaar" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="kuupaev" Type="datetime" Nullable="false" />
+    <Property Name="remonditoo_remonditooID" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="tootajaametiTootaja">
     <End Role="tootaja" Type="Model1.Store.tootajaSet" Multiplicity="1" />
     <End Role="ametiTootaja" Type="Model1.Store.ametiTootajaSet" Multiplicity="*" />
@@ -61,6 +237,162 @@
       </Principal>
       <Dependent Role="ametiTootaja">
         <PropertyRef Name="amet_ametID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="teenustehnikuteenus">
+    <End Role="teenus" Type="Model1.Store.teenusSet" Multiplicity="1" />
+    <End Role="tehnikuteenus" Type="Model1.Store.tehnikuteenusSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teenus">
+        <PropertyRef Name="teenuseID" />
+      </Principal>
+      <Dependent Role="tehnikuteenus">
+        <PropertyRef Name="teenus_teenuseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tehniktehnikuteenus">
+    <End Role="tehnik" Type="Model1.Store.tehnikSet" Multiplicity="1" />
+    <End Role="tehnikuteenus" Type="Model1.Store.tehnikuteenusSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tehnik">
+        <PropertyRef Name="tehnikID" />
+      </Principal>
+      <Dependent Role="tehnikuteenus">
+        <PropertyRef Name="tehnik_tehnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="seadeklientiSeade">
+    <End Role="seade" Type="Model1.Store.seadeSet" Multiplicity="1" />
+    <End Role="klientiSeade" Type="Model1.Store.klientiSeadeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="seade">
+        <PropertyRef Name="seadeID" />
+      </Principal>
+      <Dependent Role="klientiSeade">
+        <PropertyRef Name="seade_seadeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="kleintklientiSeade">
+    <End Role="kleint" Type="Model1.Store.kleintSet" Multiplicity="1" />
+    <End Role="klientiSeade" Type="Model1.Store.klientiSeadeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kleint">
+        <PropertyRef Name="klientID" />
+      </Principal>
+      <Dependent Role="klientiSeade">
+        <PropertyRef Name="kleint_klientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="seaderemonditoo">
+    <End Role="seade" Type="Model1.Store.seadeSet" Multiplicity="1" />
+    <End Role="remonditoo" Type="Model1.Store.remonditooSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="seade">
+        <PropertyRef Name="seadeID" />
+      </Principal>
+      <Dependent Role="remonditoo">
+        <PropertyRef Name="seade_seadeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="remonditooremonditeenus">
+    <End Role="remonditoo" Type="Model1.Store.remonditooSet" Multiplicity="1" />
+    <End Role="remonditeenus" Type="Model1.Store.remonditeenusSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="remonditoo">
+        <PropertyRef Name="remonditooID" />
+      </Principal>
+      <Dependent Role="remonditeenus">
+        <PropertyRef Name="remonditoo_remonditooID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tehnikremonditeenus">
+    <End Role="tehnik" Type="Model1.Store.tehnikSet" Multiplicity="1" />
+    <End Role="remonditeenus" Type="Model1.Store.remonditeenusSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tehnik">
+        <PropertyRef Name="tehnikID" />
+      </Principal>
+      <Dependent Role="remonditeenus">
+        <PropertyRef Name="tehnik_tehnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="teenusremonditeenus">
+    <End Role="teenus" Type="Model1.Store.teenusSet" Multiplicity="1" />
+    <End Role="remonditeenus" Type="Model1.Store.remonditeenusSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teenus">
+        <PropertyRef Name="teenuseID" />
+      </Principal>
+      <Dependent Role="remonditeenus">
+        <PropertyRef Name="teenus_teenuseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tootjaseade">
+    <End Role="tootja" Type="Model1.Store.tootjaSet" Multiplicity="1" />
+    <End Role="seade" Type="Model1.Store.seadeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tootja">
+        <PropertyRef Name="tootjaID" />
+      </Principal>
+      <Dependent Role="seade">
+        <PropertyRef Name="tootja_tootjaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tootjavaruosa">
+    <End Role="tootja" Type="Model1.Store.tootjaSet" Multiplicity="1" />
+    <End Role="varuosa" Type="Model1.Store.varuosaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tootja">
+        <PropertyRef Name="tootjaID" />
+      </Principal>
+      <Dependent Role="varuosa">
+        <PropertyRef Name="tootja_tootjaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="remonditoovaruosatool">
+    <End Role="remonditoo" Type="Model1.Store.remonditooSet" Multiplicity="1" />
+    <End Role="varuosatool" Type="Model1.Store.varuosatoolSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="remonditoo">
+        <PropertyRef Name="remonditooID" />
+      </Principal>
+      <Dependent Role="varuosatool">
+        <PropertyRef Name="remonditoo_remonditooID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="varuosavaruosatool">
+    <End Role="varuosa" Type="Model1.Store.varuosaSet" Multiplicity="1" />
+    <End Role="varuosatool" Type="Model1.Store.varuosatoolSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="varuosa">
+        <PropertyRef Name="varuosaID" />
+      </Principal>
+      <Dependent Role="varuosatool">
+        <PropertyRef Name="varuosa_varuosaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="remonditootagasiside">
+    <End Role="remonditoo" Type="Model1.Store.remonditooSet" Multiplicity="1" />
+    <End Role="tagasiside" Type="Model1.Store.tagasisideSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="remonditoo">
+        <PropertyRef Name="remonditooID" />
+      </Principal>
+      <Dependent Role="tagasiside">
+        <PropertyRef Name="remonditoo_remonditooID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -101,6 +433,48 @@
           <AssociationSet Name="kleintklientiSeade" Association="Model1.kleintklientiSeade">
             <End Role="kleint" EntitySet="kleintSet" />
             <End Role="klientiSeade" EntitySet="klientiSeadeSet" />
+          </AssociationSet>
+          <EntitySet Name="remonditooSet" EntityType="Model1.remonditoo" />
+          <AssociationSet Name="seaderemonditoo" Association="Model1.seaderemonditoo">
+            <End Role="seade" EntitySet="seadeSet" />
+            <End Role="remonditoo" EntitySet="remonditooSet" />
+          </AssociationSet>
+          <EntitySet Name="remonditeenusSet" EntityType="Model1.remonditeenus" />
+          <AssociationSet Name="remonditooremonditeenus" Association="Model1.remonditooremonditeenus">
+            <End Role="remonditoo" EntitySet="remonditooSet" />
+            <End Role="remonditeenus" EntitySet="remonditeenusSet" />
+          </AssociationSet>
+          <AssociationSet Name="tehnikremonditeenus" Association="Model1.tehnikremonditeenus">
+            <End Role="tehnik" EntitySet="tehnikSet" />
+            <End Role="remonditeenus" EntitySet="remonditeenusSet" />
+          </AssociationSet>
+          <AssociationSet Name="teenusremonditeenus" Association="Model1.teenusremonditeenus">
+            <End Role="teenus" EntitySet="teenusSet" />
+            <End Role="remonditeenus" EntitySet="remonditeenusSet" />
+          </AssociationSet>
+          <EntitySet Name="varuosaSet" EntityType="Model1.varuosa" />
+          <EntitySet Name="varuosatoolSet" EntityType="Model1.varuosatool" />
+          <EntitySet Name="tootjaSet" EntityType="Model1.tootja" />
+          <AssociationSet Name="tootjaseade" Association="Model1.tootjaseade">
+            <End Role="tootja" EntitySet="tootjaSet" />
+            <End Role="seade" EntitySet="seadeSet" />
+          </AssociationSet>
+          <AssociationSet Name="tootjavaruosa" Association="Model1.tootjavaruosa">
+            <End Role="tootja" EntitySet="tootjaSet" />
+            <End Role="varuosa" EntitySet="varuosaSet" />
+          </AssociationSet>
+          <AssociationSet Name="remonditoovaruosatool" Association="Model1.remonditoovaruosatool">
+            <End Role="remonditoo" EntitySet="remonditooSet" />
+            <End Role="varuosatool" EntitySet="varuosatoolSet" />
+          </AssociationSet>
+          <AssociationSet Name="varuosavaruosatool" Association="Model1.varuosavaruosatool">
+            <End Role="varuosa" EntitySet="varuosaSet" />
+            <End Role="varuosatool" EntitySet="varuosatoolSet" />
+          </AssociationSet>
+          <EntitySet Name="tagasisideSet" EntityType="Model1.tagasiside" />
+          <AssociationSet Name="remonditootagasiside" Association="Model1.remonditootagasiside">
+            <End Role="remonditoo" EntitySet="remonditooSet" />
+            <End Role="tagasiside" EntitySet="tagasisideSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tootaja">
@@ -144,6 +518,7 @@
           <Property Name="kirjeldus" Type="String" Nullable="false" />
           <Property Name="hind" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tehnikuteenus" Relationship="Model1.teenustehnikuteenus" FromRole="teenus" ToRole="tehnikuteenus" />
+          <NavigationProperty Name="remonditeenus" Relationship="Model1.teenusremonditeenus" FromRole="teenus" ToRole="remonditeenus" />
         </EntityType>
         <EntityType Name="tehnik">
           <Key>
@@ -154,6 +529,7 @@
           <Property Name="kontaktadmed" Type="String" Nullable="false" />
           <Property Name="amet" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tehnikuteenus" Relationship="Model1.tehniktehnikuteenus" FromRole="tehnik" ToRole="tehnikuteenus" />
+          <NavigationProperty Name="remonditeenus" Relationship="Model1.tehnikremonditeenus" FromRole="tehnik" ToRole="remonditeenus" />
         </EntityType>
         <EntityType Name="tehnikuteenus">
           <Key>
@@ -191,6 +567,8 @@
           <Property Name="mudel" Type="String" Nullable="false" />
           <Property Name="seerianumber" Type="Int32" Nullable="false" />
           <NavigationProperty Name="klientiSeade" Relationship="Model1.seadeklientiSeade" FromRole="seade" ToRole="klientiSeade" />
+          <NavigationProperty Name="remonditoo" Relationship="Model1.seaderemonditoo" FromRole="seade" ToRole="remonditoo" />
+          <NavigationProperty Name="tootja" Relationship="Model1.tootjaseade" FromRole="seade" ToRole="tootja" />
         </EntityType>
         <EntityType Name="klientiSeade">
           <Key>
@@ -207,6 +585,106 @@
         <Association Name="kleintklientiSeade">
           <End Type="Model1.kleint" Role="kleint" Multiplicity="1" />
           <End Type="Model1.klientiSeade" Role="klientiSeade" Multiplicity="*" />
+        </Association>
+        <EntityType Name="remonditoo">
+          <Key>
+            <PropertyRef Name="remonditooID" />
+          </Key>
+          <Property Name="remonditooID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vastuvõtmise_kuupaev" Type="DateTime" Nullable="false" />
+          <Property Name="kirjeldus" Type="String" Nullable="false" />
+          <Property Name="remondistatus" Type="Int32" Nullable="false" />
+          <Property Name="ülesandmise_kuupaev" Type="String" Nullable="false" />
+          <NavigationProperty Name="seade" Relationship="Model1.seaderemonditoo" FromRole="remonditoo" ToRole="seade" />
+          <NavigationProperty Name="remonditeenus" Relationship="Model1.remonditooremonditeenus" FromRole="remonditoo" ToRole="remonditeenus" />
+          <NavigationProperty Name="varuosatool" Relationship="Model1.remonditoovaruosatool" FromRole="remonditoo" ToRole="varuosatool" />
+          <NavigationProperty Name="tagasiside" Relationship="Model1.remonditootagasiside" FromRole="remonditoo" ToRole="tagasiside" />
+        </EntityType>
+        <Association Name="seaderemonditoo">
+          <End Type="Model1.seade" Role="seade" Multiplicity="1" />
+          <End Type="Model1.remonditoo" Role="remonditoo" Multiplicity="*" />
+        </Association>
+        <EntityType Name="remonditeenus">
+          <Key>
+            <PropertyRef Name="remonditeenusID" />
+          </Key>
+          <Property Name="remonditeenusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="remonditoo" Relationship="Model1.remonditooremonditeenus" FromRole="remonditeenus" ToRole="remonditoo" />
+          <NavigationProperty Name="tehnik" Relationship="Model1.tehnikremonditeenus" FromRole="remonditeenus" ToRole="tehnik" />
+          <NavigationProperty Name="teenus" Relationship="Model1.teenusremonditeenus" FromRole="remonditeenus" ToRole="teenus" />
+        </EntityType>
+        <Association Name="remonditooremonditeenus">
+          <End Type="Model1.remonditoo" Role="remonditoo" Multiplicity="1" />
+          <End Type="Model1.remonditeenus" Role="remonditeenus" Multiplicity="*" />
+        </Association>
+        <Association Name="tehnikremonditeenus">
+          <End Type="Model1.tehnik" Role="tehnik" Multiplicity="1" />
+          <End Type="Model1.remonditeenus" Role="remonditeenus" Multiplicity="*" />
+        </Association>
+        <Association Name="teenusremonditeenus">
+          <End Type="Model1.teenus" Role="teenus" Multiplicity="1" />
+          <End Type="Model1.remonditeenus" Role="remonditeenus" Multiplicity="*" />
+        </Association>
+        <EntityType Name="varuosa">
+          <Key>
+            <PropertyRef Name="varuosaID" />
+          </Key>
+          <Property Name="varuosaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nimetus" Type="String" Nullable="false" />
+          <Property Name="hind" Type="Int32" Nullable="false" />
+          <Property Name="laoseis" Type="Int32" Nullable="false" />
+          <Property Name="aadress" Type="String" Nullable="false" />
+          <NavigationProperty Name="tootja" Relationship="Model1.tootjavaruosa" FromRole="varuosa" ToRole="tootja" />
+          <NavigationProperty Name="varuosatool" Relationship="Model1.varuosavaruosatool" FromRole="varuosa" ToRole="varuosatool" />
+        </EntityType>
+        <EntityType Name="varuosatool">
+          <Key>
+            <PropertyRef Name="varuosatoolID" />
+          </Key>
+          <Property Name="varuosatoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kogus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="remonditoo" Relationship="Model1.remonditoovaruosatool" FromRole="varuosatool" ToRole="remonditoo" />
+          <NavigationProperty Name="varuosa" Relationship="Model1.varuosavaruosatool" FromRole="varuosatool" ToRole="varuosa" />
+        </EntityType>
+        <EntityType Name="tootja">
+          <Key>
+            <PropertyRef Name="tootjaID" />
+          </Key>
+          <Property Name="tootjaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nimi" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <NavigationProperty Name="seade" Relationship="Model1.tootjaseade" FromRole="tootja" ToRole="seade" />
+          <NavigationProperty Name="varuosa" Relationship="Model1.tootjavaruosa" FromRole="tootja" ToRole="varuosa" />
+        </EntityType>
+        <Association Name="tootjaseade">
+          <End Type="Model1.tootja" Role="tootja" Multiplicity="1" />
+          <End Type="Model1.seade" Role="seade" Multiplicity="*" />
+        </Association>
+        <Association Name="tootjavaruosa">
+          <End Type="Model1.tootja" Role="tootja" Multiplicity="1" />
+          <End Type="Model1.varuosa" Role="varuosa" Multiplicity="*" />
+        </Association>
+        <Association Name="remonditoovaruosatool">
+          <End Type="Model1.remonditoo" Role="remonditoo" Multiplicity="1" />
+          <End Type="Model1.varuosatool" Role="varuosatool" Multiplicity="*" />
+        </Association>
+        <Association Name="varuosavaruosatool">
+          <End Type="Model1.varuosa" Role="varuosa" Multiplicity="1" />
+          <End Type="Model1.varuosatool" Role="varuosatool" Multiplicity="*" />
+        </Association>
+        <EntityType Name="tagasiside">
+          <Key>
+            <PropertyRef Name="tagasisideID" />
+          </Key>
+          <Property Name="tagasisideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hinnaaeg" Type="Time" Nullable="false" />
+          <Property Name="kommentaar" Type="String" Nullable="false" />
+          <Property Name="kuupaev" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="remonditoo" Relationship="Model1.remonditootagasiside" FromRole="tagasiside" ToRole="remonditoo" />
+        </EntityType>
+        <Association Name="remonditootagasiside">
+          <End Type="Model1.remonditoo" Role="remonditoo" Multiplicity="1" />
+          <End Type="Model1.tagasiside" Role="tagasiside" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -237,6 +715,117 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="teenusSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.teenus)">
+        <MappingFragment StoreEntitySet="teenusSet">
+          <ScalarProperty Name="teenuseID" ColumnName="teenuseID" />
+          <ScalarProperty Name="nimetus" ColumnName="nimetus" />
+          <ScalarProperty Name="kirjeldus" ColumnName="kirjeldus" />
+          <ScalarProperty Name="hind" ColumnName="hind" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tehnikSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.tehnik)">
+        <MappingFragment StoreEntitySet="tehnikSet">
+          <ScalarProperty Name="tehnikID" ColumnName="tehnikID" />
+          <ScalarProperty Name="nimi" ColumnName="nimi" />
+          <ScalarProperty Name="kontaktadmed" ColumnName="kontaktadmed" />
+          <ScalarProperty Name="amet" ColumnName="amet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tehnikuteenusSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.tehnikuteenus)">
+        <MappingFragment StoreEntitySet="tehnikuteenusSet">
+          <ScalarProperty Name="tehnikuteenusID" ColumnName="tehnikuteenusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kleintSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.kleint)">
+        <MappingFragment StoreEntitySet="kleintSet">
+          <ScalarProperty Name="klientID" ColumnName="klientID" />
+          <ScalarProperty Name="nimi" ColumnName="nimi" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="epost" ColumnName="epost" />
+          <ScalarProperty Name="aadress" ColumnName="aadress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="seadeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.seade)">
+        <MappingFragment StoreEntitySet="seadeSet">
+          <ScalarProperty Name="seadeID" ColumnName="seadeID" />
+          <ScalarProperty Name="tyyp" ColumnName="tyyp" />
+          <ScalarProperty Name="mudel" ColumnName="mudel" />
+          <ScalarProperty Name="seerianumber" ColumnName="seerianumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="klientiSeadeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.klientiSeade)">
+        <MappingFragment StoreEntitySet="klientiSeadeSet">
+          <ScalarProperty Name="klientiSeadeID" ColumnName="klientiSeadeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="remonditooSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.remonditoo)">
+        <MappingFragment StoreEntitySet="remonditooSet">
+          <ScalarProperty Name="remonditooID" ColumnName="remonditooID" />
+          <ScalarProperty Name="vastuvõtmise_kuupaev" ColumnName="vastuvõtmise_kuupaev" />
+          <ScalarProperty Name="kirjeldus" ColumnName="kirjeldus" />
+          <ScalarProperty Name="remondistatus" ColumnName="remondistatus" />
+          <ScalarProperty Name="ülesandmise_kuupaev" ColumnName="ülesandmise_kuupaev" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="remonditeenusSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.remonditeenus)">
+        <MappingFragment StoreEntitySet="remonditeenusSet">
+          <ScalarProperty Name="remonditeenusID" ColumnName="remonditeenusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="varuosaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.varuosa)">
+        <MappingFragment StoreEntitySet="varuosaSet">
+          <ScalarProperty Name="varuosaID" ColumnName="varuosaID" />
+          <ScalarProperty Name="nimetus" ColumnName="nimetus" />
+          <ScalarProperty Name="hind" ColumnName="hind" />
+          <ScalarProperty Name="laoseis" ColumnName="laoseis" />
+          <ScalarProperty Name="aadress" ColumnName="aadress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="varuosatoolSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.varuosatool)">
+        <MappingFragment StoreEntitySet="varuosatoolSet">
+          <ScalarProperty Name="varuosatoolID" ColumnName="varuosatoolID" />
+          <ScalarProperty Name="kogus" ColumnName="kogus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tootjaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.tootja)">
+        <MappingFragment StoreEntitySet="tootjaSet">
+          <ScalarProperty Name="tootjaID" ColumnName="tootjaID" />
+          <ScalarProperty Name="nimi" ColumnName="nimi" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tagasisideSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.tagasiside)">
+        <MappingFragment StoreEntitySet="tagasisideSet">
+          <ScalarProperty Name="tagasisideID" ColumnName="tagasisideID" />
+          <ScalarProperty Name="hinnaaeg" ColumnName="hinnaaeg" />
+          <ScalarProperty Name="kommentaar" ColumnName="kommentaar" />
+          <ScalarProperty Name="kuupaev" ColumnName="kuupaev" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="tootajaametiTootaja" TypeName="Model1.tootajaametiTootaja" StoreEntitySet="ametiTootajaSet">
       <EndProperty Name="tootaja">
         <ScalarProperty Name="tootajaID" ColumnName="tootaja_tootajaID" />
@@ -251,6 +840,110 @@
       </EndProperty>
       <EndProperty Name="ametiTootaja">
         <ScalarProperty Name="ametiTootajaID" ColumnName="ametiTootajaID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="teenustehnikuteenus" TypeName="Model1.teenustehnikuteenus" StoreEntitySet="tehnikuteenusSet">
+      <EndProperty Name="teenus">
+        <ScalarProperty Name="teenuseID" ColumnName="teenus_teenuseID" />
+      </EndProperty>
+      <EndProperty Name="tehnikuteenus">
+        <ScalarProperty Name="tehnikuteenusID" ColumnName="tehnikuteenusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tehniktehnikuteenus" TypeName="Model1.tehniktehnikuteenus" StoreEntitySet="tehnikuteenusSet">
+      <EndProperty Name="tehnik">
+        <ScalarProperty Name="tehnikID" ColumnName="tehnik_tehnikID" />
+      </EndProperty>
+      <EndProperty Name="tehnikuteenus">
+        <ScalarProperty Name="tehnikuteenusID" ColumnName="tehnikuteenusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="seadeklientiSeade" TypeName="Model1.seadeklientiSeade" StoreEntitySet="klientiSeadeSet">
+      <EndProperty Name="seade">
+        <ScalarProperty Name="seadeID" ColumnName="seade_seadeID" />
+      </EndProperty>
+      <EndProperty Name="klientiSeade">
+        <ScalarProperty Name="klientiSeadeID" ColumnName="klientiSeadeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="kleintklientiSeade" TypeName="Model1.kleintklientiSeade" StoreEntitySet="klientiSeadeSet">
+      <EndProperty Name="kleint">
+        <ScalarProperty Name="klientID" ColumnName="kleint_klientID" />
+      </EndProperty>
+      <EndProperty Name="klientiSeade">
+        <ScalarProperty Name="klientiSeadeID" ColumnName="klientiSeadeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="seaderemonditoo" TypeName="Model1.seaderemonditoo" StoreEntitySet="remonditooSet">
+      <EndProperty Name="seade">
+        <ScalarProperty Name="seadeID" ColumnName="seade_seadeID" />
+      </EndProperty>
+      <EndProperty Name="remonditoo">
+        <ScalarProperty Name="remonditooID" ColumnName="remonditooID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="remonditooremonditeenus" TypeName="Model1.remonditooremonditeenus" StoreEntitySet="remonditeenusSet">
+      <EndProperty Name="remonditoo">
+        <ScalarProperty Name="remonditooID" ColumnName="remonditoo_remonditooID" />
+      </EndProperty>
+      <EndProperty Name="remonditeenus">
+        <ScalarProperty Name="remonditeenusID" ColumnName="remonditeenusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tehnikremonditeenus" TypeName="Model1.tehnikremonditeenus" StoreEntitySet="remonditeenusSet">
+      <EndProperty Name="tehnik">
+        <ScalarProperty Name="tehnikID" ColumnName="tehnik_tehnikID" />
+      </EndProperty>
+      <EndProperty Name="remonditeenus">
+        <ScalarProperty Name="remonditeenusID" ColumnName="remonditeenusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="teenusremonditeenus" TypeName="Model1.teenusremonditeenus" StoreEntitySet="remonditeenusSet">
+      <EndProperty Name="teenus">
+        <ScalarProperty Name="teenuseID" ColumnName="teenus_teenuseID" />
+      </EndProperty>
+      <EndProperty Name="remonditeenus">
+        <ScalarProperty Name="remonditeenusID" ColumnName="remonditeenusID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tootjaseade" TypeName="Model1.tootjaseade" StoreEntitySet="seadeSet">
+      <EndProperty Name="tootja">
+        <ScalarProperty Name="tootjaID" ColumnName="tootja_tootjaID" />
+      </EndProperty>
+      <EndProperty Name="seade">
+        <ScalarProperty Name="seadeID" ColumnName="seadeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tootjavaruosa" TypeName="Model1.tootjavaruosa" StoreEntitySet="varuosaSet">
+      <EndProperty Name="tootja">
+        <ScalarProperty Name="tootjaID" ColumnName="tootja_tootjaID" />
+      </EndProperty>
+      <EndProperty Name="varuosa">
+        <ScalarProperty Name="varuosaID" ColumnName="varuosaID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="remonditoovaruosatool" TypeName="Model1.remonditoovaruosatool" StoreEntitySet="varuosatoolSet">
+      <EndProperty Name="remonditoo">
+        <ScalarProperty Name="remonditooID" ColumnName="remonditoo_remonditooID" />
+      </EndProperty>
+      <EndProperty Name="varuosatool">
+        <ScalarProperty Name="varuosatoolID" ColumnName="varuosatoolID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="varuosavaruosatool" TypeName="Model1.varuosavaruosatool" StoreEntitySet="varuosatoolSet">
+      <EndProperty Name="varuosa">
+        <ScalarProperty Name="varuosaID" ColumnName="varuosa_varuosaID" />
+      </EndProperty>
+      <EndProperty Name="varuosatool">
+        <ScalarProperty Name="varuosatoolID" ColumnName="varuosatoolID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="remonditootagasiside" TypeName="Model1.remonditootagasiside" StoreEntitySet="tagasisideSet">
+      <EndProperty Name="remonditoo">
+        <ScalarProperty Name="remonditooID" ColumnName="remonditoo_remonditooID" />
+      </EndProperty>
+      <EndProperty Name="tagasiside">
+        <ScalarProperty Name="tagasisideID" ColumnName="tagasisideID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

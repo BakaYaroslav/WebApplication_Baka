@@ -17,6 +17,7 @@ namespace WebApplication_Baka
         public seade()
         {
             this.klientiSeade = new HashSet<klientiSeade>();
+            this.remonditoo = new HashSet<remonditoo>();
         }
     
         public int seadeID { get; set; }
@@ -25,5 +26,7 @@ namespace WebApplication_Baka
         public int seerianumber { get; set; }
     
         public virtual ICollection<klientiSeade> klientiSeade { get; set; }
+        public virtual ICollection<remonditoo> remonditoo { get; set; }
+        public virtual tootja tootja { get; set; }
     }
 }
